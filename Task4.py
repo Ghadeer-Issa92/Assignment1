@@ -2,35 +2,39 @@ import inspect
 import io
 from time import time
 from contextlib import redirect_stdout 
+
+
 class timer_func:
-    global  log  
-    global ranking
-    ranking={} 
-    log = open("log.txt","a+")# append mode
+
     # with redirect_stdout(io.StringIO()) as f:
     def __init__(self, func):
         self.function = func
         self.counter = 0
         self.time = 0.0
     def __call__(self, *args, **kwargs):
-        with redirect_stdout(io.StringIO()):
+        with redirect_stdout(io.StringIO()) as f:
             with open('Output.txt', 'a+') as Output:
-                start = time()
                 try:
+                    start = time()
                     self.function(*args, **kwargs)
                     end= time()
                     self.time = end-start
                     self.counter += 1
-                    Output.write("Execution took {} seconds".format(self.time))
-                    Output.write('{} is running for the {} time'.format(self.function.__name__ , self.counter))
-                    Output.write(f'Function {self.function.__name__!r} execution time = {(end-start):.10f}s  called = {self.counter}')
-                    Output.write(f'Source code:\n{inspect.getsource(self.function)}')
-                    Output.write(f'Docs :\n {inspect.getdoc(self.function)}')
-                    Output.close()
-                except ZeroDivisionError as err:
-                  with redirect_stdout(io.StringIO()):
-                     with open('log.log', 'a+') as log:  
-                        log.write("RuntimeError : {0}".format(err))
+                    
+                    Output.write(f'Function {self.function.__name__!r} execution time = {(self.time):.10f}s  called = {self.counter}\n')
+                    Output.write(f'Name:\t\t{self.function.__name__}\n')
+                    Output.write(f'Type:\t\t{type(self.function)}\n')
+                    Output.write(f'sign :\t\t{inspect.signature(self.function)}\n')
+                    Output.write(f'pos_Arg :\t{args}\n')
+                    Output.write(f'kw_Arg :\t{kwargs}\n')
+                    # You can split getsource by '\n' and print each line with the same indentation.
+                    Output.write(f'Source code:{inspect.getsource(self.function)}\n')
+                    # You can split getdoc by '\n' and print each line with the same indentation.
+                    Output.write(f'Docs :\t\t{inspect.getdoc(self.function)}\n')
+                    Output.write(f'Output:\t{f.getvalue()}\n\n')
+                except Exception as err:                                 
+                    with open('log.log', 'a+') as log:  
+                        log.write("RuntimeError : {0}\n".format(err))
                         return self.function
         return self.function
 
