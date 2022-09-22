@@ -5,6 +5,11 @@ from time import sleep
 import Task1 
 import Task2
 import Task3
+import Task4
+
+
+# It seems that you forgot about 2 functions containing lambda expressions within
+
 @Task3.timer_func
 def quad(a,b,c):
     '''quad function docstring '''
@@ -26,6 +31,7 @@ def quad(a,b,c):
         # print(- b / (2 * a), " + i", math.sqrt(abs(D))) 
         # print(- b / (2 * a), " - i", math.sqrt(abs(D))) 
 # quad(-22,4,-42)
+
 @Task3.timer_func
 def pascal_triangle(n):
     '''pascal triangle doc string'''
