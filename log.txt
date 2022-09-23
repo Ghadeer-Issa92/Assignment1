@@ -1,0 +1,83 @@
+Execution took 2.0007541179656982 secondssleeper is running for the 1 timeFunction 'sleeper' execution time = 2.0007541180s  called = 1Source code:
+@Task3.timer_func
+def sleeper(n):
+    '''this function don't need  docstring, but here is it anyway'''
+    sleep(n)
+Docs :
+ this function don't need  docstring, but here is it anywayExecution took 1.8596649169921875e-05 secondspascal_triangle is running for the 1 timeFunction 'pascal_triangle' execution time = 0.0000185966s  called = 1Source code:
+@Task3.timer_func
+def pascal_triangle(n):
+    '''pascal triangle doc string'''
+    trow=[1]
+    y=[0]
+    
+    for x in range(max(n,0)):
+        # print(" "*(n-x),end="")
+        # print (trow)
+        trow=[l+r for l,r in zip(trow+y, y+trow)]
+    return n>=1
+Docs :
+ pascal triangle doc stringExecution took 1.2874603271484375e-05 secondsquad is running for the 1 timeFunction 'quad' execution time = 0.0000128746s  called = 1Source code:
+@Task3.timer_func
+def quad(a,b,c):
+    '''quad function docstring '''
+    if a == 0:
+        # print('incorrect input')
+        return 0
+
+    D=(b**2)-(4*a*c)
+    if D>0:
+        X1=(-b-math.sqrt(D))/(2*a)
+        X2=(-b+math.sqrt(D))/(2*a)
+        # print ('X1= ', X1 ,' X2= ',X2)
+    elif D==0:
+        x1=x2=-b/(2*a)
+        # print ('X1=X2= ', -b/(2*a))
+    else:
+        x1=0
+        # print("Complex Roots") 
+        # print(- b / (2 * a), " + i", math.sqrt(abs(D))) 
+        # print(- b / (2 * a), " - i", math.sqrt(abs(D))) 
+Docs :
+ quad function docstring Execution took 2.6702880859375e-05 secondspascal_triangle is running for the 2 timeFunction 'pascal_triangle' execution time = 0.0000267029s  called = 2Source code:
+@Task3.timer_func
+def pascal_triangle(n):
+    '''pascal triangle doc string'''
+    trow=[1]
+    y=[0]
+    
+    for x in range(max(n,0)):
+        # print(" "*(n-x),end="")
+        # print (trow)
+        trow=[l+r for l,r in zip(trow+y, y+trow)]
+    return n>=1
+Docs :
+ pascal triangle doc stringExecution took 8.106231689453125e-06 secondsquad is running for the 2 timeFunction 'quad' execution time = 0.0000081062s  called = 2Source code:
+@Task3.timer_func
+def quad(a,b,c):
+    '''quad function docstring '''
+    if a == 0:
+        # print('incorrect input')
+        return 0
+
+    D=(b**2)-(4*a*c)
+    if D>0:
+        X1=(-b-math.sqrt(D))/(2*a)
+        X2=(-b+math.sqrt(D))/(2*a)
+        # print ('X1= ', X1 ,' X2= ',X2)
+    elif D==0:
+        x1=x2=-b/(2*a)
+        # print ('X1=X2= ', -b/(2*a))
+    else:
+        x1=0
+        # print("Complex Roots") 
+        # print(- b / (2 * a), " + i", math.sqrt(abs(D))) 
+        # print(- b / (2 * a), " - i", math.sqrt(abs(D))) 
+Docs :
+ quad function docstring Execution took 1.001091480255127 secondssleeper is running for the 2 timeFunction 'sleeper' execution time = 1.0010914803s  called = 2Source code:
+@Task3.timer_func
+def sleeper(n):
+    '''this function don't need  docstring, but here is it anyway'''
+    sleep(n)
+Docs :
+ this function don't need  docstring, but here is it anyway

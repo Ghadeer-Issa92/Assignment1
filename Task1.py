@@ -1,13 +1,18 @@
 from time import time
- 
+import contextlib
+import io
+
 def timer_func(func):
-    def wrappper(*args, **kwargs):
-        wrappper.counter+=1
+    def wrapper_f(*args, **kwargs):
+        wrapper_f.calls +=1
+        f = io.StringIO()
         start = time()
-        result = func(*args, **kwargs)
+        with contextlib.redirect_stdout(f):
+            func(*args, **kwargs)
         end = time()
-        print(f'Function {func.__name__!r} execution time = {(end-start):.10f}s','called = ',wrappper.counter)
+        result = f.getvalue()
+        print(f'{func.__name__} call {wrapper_f.calls} excuted in {(end-start):.4f} sec')
         return result
-    wrappper.counter=0
-    return wrappper
+    wrapper_f.calls=0
+    return wrapper_f
 
