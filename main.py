@@ -1,16 +1,20 @@
 import math
 from time import sleep
+
 import Task1 
 import Task2
 import Task3
+import Task4
 @Task3.timer_func
 def quad(a,b,c):
-    '''this function solves quadratic equation the input parameters is a, b, c '''
+    '''quad function docstring '''
     if a == 0:
         print('incorrect input')
         return 0
-
+   
     D=(b**2)-(4*a*c)
+    #uncomment the next line to raise an division by zeroRuntimeError =============
+      # error = D/0
     if D>0:
         X1=(-b-math.sqrt(D))/(2*a)
         X2=(-b+math.sqrt(D))/(2*a)
@@ -24,10 +28,9 @@ def quad(a,b,c):
         print(- b / (2 * a), " + i", math.sqrt(abs(D))) 
         print(- b / (2 * a), " - i", math.sqrt(abs(D))) 
 
-        
 @Task3.timer_func
-def pascal_triangle(n):
-    '''this function print n lines of pascal triangle. the input is just n (number of rows to print) '''
+def pascal(n):
+    '''pascal triangle doc string'''
     trow=[1]
     y=[0]
     
@@ -39,14 +42,25 @@ def pascal_triangle(n):
 
 @Task3.timer_func
 def sleeper(n):
-    '''this function sleeps fo n seconds. the input is just n (number of seconds to sleep)  '''
+    '''this function don't need  docstring, but here is it anyway'''
     sleep(n)
 
 
+
 if __name__ == '__main__':
+    
     sleeper(2)
-    pascal_triangle(6)
+    pascal(6)
     quad(-22,4,-42)
-    pascal_triangle(6)
+    pascal(6)
     quad(-22,4,-42)
     sleeper(1)
+
+    print(Task3.func_list)
+    print("PROGRAM   ||  RANK  ||   TIME ELAPSED")
+    Task3.func_list.sort(key=lambda x: x[1])
+
+    j=1
+    for key,val in Task3.func_list:
+        print(f'{key}\t\t{j}\t{val:.4f} s')
+        j+=1
