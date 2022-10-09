@@ -1,32 +1,29 @@
+from time import time
 import inspect
 import io
-from time import time
-from contextlib import redirect_stdout 
+import contextlib
+
+func_list = {}
 class timer_func:
-    global  log  
-    global ranking
-    ranking={} 
-    log = open("log.txt","a+")# append mode
-    # with redirect_stdout(io.StringIO()) as f:
-    def __init__(self, func):
-        self.function = func
-        self.counter = 0
-        self.time = 0.0
-    def __call__(self, *args, **kwargs):
-        with redirect_stdout(io.StringIO()):
-            with open('log.txt', 'a+') as log:
-                start = time()
-                result = self.function(*args, **kwargs)
-                end= time()
-                self.time = end-start
-                self.counter += 1
-                log.write("Execution took {} seconds".format(self.time))
-                log.write('{} is running for the {} time'.format(self.function.__name__ , self.counter))
-                log.write(f'Function {self.function.__name__!r} execution time = {(end-start):.10f}s  called = {self.counter}')
-                log.write(f'Source code:\n{inspect.getsource(self.function)}')
-                log.write(f'Docs :\n {inspect.getdoc(self.function)}')
-                log.close()
-        return result
-
-
-
+    def __init__(self,func):
+        self.func = func
+        timer_func.count = 0
+    def __call__(self,*args,**kwargs):
+        timer_func.count += 1
+        self.arguments = args
+        start = time()
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            self.func(*args, **kwargs)
+        end= time()
+        exec_time = end - start
+        global fun_list
+        with open('log.txt', 'a+') as log:
+            log.writelines(self.func.__name__ + " call" + str(timer_func.count)+ " executed in "+ str(exec_time)+ " sec\n") 
+            log.writelines(f"Name: {self.func.__name__}\n")
+            log.writelines(f"Type: {type(self.func)}\n")
+            log.writelines(f"Sign: {inspect.signature(self.func)}\n")
+            log.writelines(f"Doc:  {self.func.__doc__}\n")
+            log.writelines(f"Source:  {inspect.getsource(self.func)}\n")
+            log.writelines(f"Output:{output.getvalue()}\n")
+        func_list.append((self.func.__name__, exec_time))
+        return self.func
