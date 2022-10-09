@@ -56,7 +56,7 @@ if __name__ == '__main__':
     quad(-22,4,-42)
     sleeper(1)
 
-    print(Task3.func_list)
+   
     print("PROGRAM   ||  RANK  ||   TIME ELAPSED")
     Task3.func_list.sort(key=lambda x: x[1])
 
