@@ -7,8 +7,7 @@ class timer_func:
     global ranking
     ranking={} 
     log = open("log.txt","a+")# append mode
-    # with redirect_stdout(io.StringIO()) as f:
-    def __init__(self, func):
+        def __init__(self, func):
         self.function = func
         self.counter = 0
         self.time = 0.0
