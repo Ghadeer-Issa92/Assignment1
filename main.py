@@ -30,7 +30,7 @@ def quad(a,b,c):
 
 @Task3.timer_func
 def pascal(n):
-    '''pascal triangle doc string'''
+    '''pascal triangle printer (takes the number of rows to be printed )'''
     trow=[1]
     y=[0]
     
@@ -42,7 +42,7 @@ def pascal(n):
 
 @Task3.timer_func
 def sleeper(n):
-    '''this function don't need  docstring, but here is it anyway'''
+    '''simple function to sleep for n second it takes one parameters (number of secod to sleep)'''
     sleep(n)
 
 
