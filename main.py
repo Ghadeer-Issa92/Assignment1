@@ -7,7 +7,7 @@ import Task3
 import Task4
 @Task3.timer_func
 def quad(a,b,c):
-    '''quad function docstring '''
+    '''quadratic equation solver (takes three parameters a,b,c. ax^2 + bx + c = 0) '''
     if a == 0:
         print('incorrect input')
         return 0
